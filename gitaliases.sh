@@ -13,7 +13,7 @@ alias cherry-pick='git cherry-pick'
 alias rebase='git rebase'
 
 # 'git pull --rebase' with a short log of the latest changes
-pull () { local HEADHASH=`git describe --always --abbrev=40`; git pull --rebase $*; echo; PAGER='cat -B' git log --format="%C(yellow)%h %C(green)%an%C(reset): %s" $HEADHASH.. | sed -nr 's/([^:]+)\:/\1\t/;p'; }
+pull () { local HEADHASH=`git describe --always --abbrev=40`; git pull --rebase $*; git submodule update; echo; PAGER='cat -B' git log --format="%C(yellow)%h %C(green)%an%C(reset): %s" $HEADHASH.. | sed -nr 's/([^:]+)\:/\1\t/;p'; }
 
 # 'git pull --ff-only' with a short log of the latest changes
 ff () { local HEADHASH=`git describe --always --abbrev=40`; git pull --ff-only $*; echo; PAGER='cat -B' git log --format="%C(yellow)%h %C(green)%an%C(reset): %s" $HEADHASH.. | sed -nr 's/([^:]+)\:/\1\t/;p'; }
