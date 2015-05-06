@@ -38,4 +38,17 @@ gdiff () { git ls-files | grep $* | xargs git diff; }
 grm () { git ls-files | grep $* | xargs git rm; }
 
 # Enable auto-completion for aliased 'git' command
-complete -o default -o nospace -F _git g
+
+# no longer working:
+# complete -o default -o nospace -F _git g
+
+# Git branch bash completion
+# To Setup:
+# Save the .git-completion.bash file found here:
+#   https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+  
+  # Add git completion to aliases
+  __git_complete g __git_main
+fi
